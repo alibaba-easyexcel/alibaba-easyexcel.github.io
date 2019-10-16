@@ -9,7 +9,7 @@ title: FAQ
 * 宏
 * csv读取（这个后续可能会考虑）
 ## 常见问题
-* 不管想要读还是写，最简单的读或者最简单的写的demo，必须看下
+* 不管想要读还是写，对应的最简单的demo，必须看下
 * 关于@Data，读写的对象都用到了[Lombok](https://www.projectlombok.org/),他会自动生成`get`,`set` ，如果不需要的话，自己创建对象并生成`get`,`set` 。
 * 出现`NoSuchMethodException`，`ClassNotFoundException`,`NoClassDefFoundError`极大概率是jar冲突，建议`clean`项目，或者统一`poi` 的版本，理论上来说`easyexcel`兼容poi的`3.17`,`4.0.1`,`4.1.0`所有较新版本
 * 如果在读的时候`Listener`里面需要使用spring的`@Autowired`，给`Listener`创建成员变量，然后在构造方法里面传进去。而别必须不让spring管理`Listener`，每次读取都要`new`一个。
