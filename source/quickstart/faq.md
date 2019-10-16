@@ -13,7 +13,7 @@ title: FAQ
 * 出现`NoSuchMethodException`，`ClassNotFoundException`,`NoClassDefFoundError`极大概率是jar冲突，建议`clean`项目，或者统一`poi` 的版本，理论上来说`easyexcel`兼容poi的`3.17`,`4.0.1`,`4.1.0`所有较新版本
 * 如果在读的时候`Listener`里面需要使用spring的`@Autowired`，给`Listener`创建成员变量，然后在构造方法里面传进去。而别必须不让spring管理`Listener`，每次读取都要`new`一个。
 * 如果用`String`去接收数字，出现小数点等情况，这个是BUG，但是很难修复，后续版本会修复这个问题。目前请使用`@NumberFormat`注解，里面的参数就是调用了java自带的`NumberFormat.format`方法，不知道怎么入参的可以自己网上查询。
-## 超大(10M以上)文件读取说明
+## 10M+文件读取说明
 03版没有办法处理，相对内存占用大很多。excel 07版本有个共享字符串[共享字符串](https://docs.microsoft.com/zh-cn/office/open-xml/working-with-the-shared-string-table)的概念，这个会非常占用内存，如果全部读取到内存的话，大概是excel文件的大小的3-10倍，所以easyexcel用存储文件的，然后再反序列化去读取的策略来节约内存。当然需要通过文件反序列化以后，效率会降低，大概降低30-50%（不一定，也看命中率，可能会超过100%）
 #### 如果对读取效率感觉还能接受，就用默认的，永久占用（单个excel读取整个过程）一般不会超过50M(大概率就30M)，剩下临时的GC会很快回收
 #### 默认大文件处理
