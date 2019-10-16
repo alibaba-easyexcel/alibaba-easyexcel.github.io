@@ -405,6 +405,61 @@ public class ExceptionDemoData {
     }
 ```
 
+## <span id="exceptionRead" />不创建对象的读
+### excel示例
+参照：[excel示例](#noModleRead)
+### 监听器
+```java
+/**
+ * 直接用map接收数据
+ *
+ * @author Jiaju Zhuang
+ */
+public class NoModleDataListener extends AnalysisEventListener<Map<Integer, String>> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NoModleDataListener.class);
+    /**
+     * 每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收
+     */
+    private static final int BATCH_COUNT = 5;
+    List<Map<Integer, String>> list = new ArrayList<Map<Integer, String>>();
+
+    @Override
+    public void invoke(Map<Integer, String> data, AnalysisContext context) {
+        LOGGER.info("解析到一条数据:{}", JSON.toJSONString(data));
+        list.add(data);
+        if (list.size() >= BATCH_COUNT) {
+            saveData();
+            list.clear();
+        }
+    }
+
+    @Override
+    public void doAfterAllAnalysed(AnalysisContext context) {
+        saveData();
+        LOGGER.info("所有数据解析完成！");
+    }
+
+    /**
+     * 加上存储数据库
+     */
+    private void saveData() {
+        LOGGER.info("{}条数据，开始存储数据库！", list.size());
+        LOGGER.info("存储数据库成功！");
+    }
+}
+```
+### 代码
+```java
+    /**
+     * 不创建对象的读，不是特别推荐使用，都用String接收对日期的支持不是很好
+     */
+    @Test
+    public void noModleRead() {
+        String fileName = TestFileUtil.getPath() + "demo" + File.separator + "demo.xlsx";
+        // 这里 只要，然后读取第一个sheet 同步读取会自动finish
+        EasyExcel.read(fileName, new NoModleDataListener()).sheet().doRead();
+    }
+```
 
 ## <span id="webRead" />web中的读
 ### 示例代码

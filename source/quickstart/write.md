@@ -636,6 +636,51 @@ public class CustomSheetWriteHandler implements SheetWriteHandler {
     }
 ```
 
+## <span id="noModleWrite" />不创建对象的写
+### excel示例
+![img](/images/quickstart/write/simpleWrite.png)
+### 代码
+```java
+/**
+     * 不创建对象的写
+     */
+    @Test
+    public void noModleWrite() {
+        // 写法1
+        String fileName = TestFileUtil.getPath() + "noModleWrite" + System.currentTimeMillis() + ".xlsx";
+        // 这里 需要指定写用哪个class去读，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
+        EasyExcel.write(fileName).head(head()).sheet("模板").doWrite(dataList());
+    }
+
+ private List<List<String>> head() {
+        List<List<String>> list = new ArrayList<List<String>>();
+        List<String> head0 = new ArrayList<String>();
+        head0.add("字符串" + System.currentTimeMillis());
+        List<String> head1 = new ArrayList<String>();
+        head1.add("数字" + System.currentTimeMillis());
+        List<String> head2 = new ArrayList<String>();
+        head2.add("日期" + System.currentTimeMillis());
+        list.add(head0);
+        list.add(head1);
+        list.add(head2);
+        return list;
+    }
+
+    private List<List<Object>> dataList() {
+        List<List<Object>> list = new ArrayList<List<Object>>();
+        for (int i = 0; i < 10; i++) {
+            List<Object> data = new ArrayList<Object>();
+            data.add("字符串" + i);
+            data.add(new Date());
+            data.add(0.56);
+            list.add(data);
+        }
+        return list;
+    }
+
+```
+
+
 ## <span id="webWrite" />web中的写
 ### 示例代码
 DEMO代码地址：[https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java](/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java)
