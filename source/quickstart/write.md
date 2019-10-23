@@ -62,7 +62,6 @@ public class DemoData {
 
 ## <span id="excludeOrIncludeWrite" />根据参数只导出指定列
 ### excel示例
-### excel示例
 ![img](/images/quickstart/write/simpleWrite.png)
 ### 对象
 参照：[对象](#simpleWriteObject)
