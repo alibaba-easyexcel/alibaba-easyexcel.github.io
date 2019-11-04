@@ -22,19 +22,52 @@ public class DemoDataListener extends AnalysisEventListener<DemoData> {
      */
     private static final int BATCH_COUNT = 5;
     List<DemoData> list = new ArrayList<DemoData>();
+    /**
+     * 假设这个是一个DAO，当然有业务逻辑这个也可以是一个service。当然如果不用存储这个对象没用。
+     */
+    private DemoDAO demoDAO;
 
+    public DemoDataListener() {
+        // 这里是demo，所以随便new一个。实际使用如果到了spring,请使用下面的有参构造函数
+        demoDAO = new DemoDAO();
+    }
+
+    /**
+     * 如果使用了spring,请使用这个构造方法。每次创建Listener的时候需要把spring管理的类传进来
+     *
+     * @param demoDAO
+     */
+    public DemoDataListener(DemoDAO demoDAO) {
+        this.demoDAO = demoDAO;
+    }
+
+    /**
+     * 这个每一条数据解析都会来调用
+     *
+     * @param data
+     *            one row value. Is is same as {@link AnalysisContext#readRowHolder()}
+     * @param context
+     */
     @Override
     public void invoke(DemoData data, AnalysisContext context) {
         LOGGER.info("解析到一条数据:{}", JSON.toJSONString(data));
         list.add(data);
+        // 达到BATCH_COUNT了，需要去存储一次数据库，防止数据几万条数据在内存，容易OOM
         if (list.size() >= BATCH_COUNT) {
             saveData();
+            // 存储完成清理 list
             list.clear();
         }
     }
 
+    /**
+     * 所有数据解析完成了 都会来调用
+     *
+     * @param context
+     */
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
+        // 这里也要保存数据，确保最后遗留的数据也存储到数据库
         saveData();
         LOGGER.info("所有数据解析完成！");
     }
@@ -44,7 +77,21 @@ public class DemoDataListener extends AnalysisEventListener<DemoData> {
      */
     private void saveData() {
         LOGGER.info("{}条数据，开始存储数据库！", list.size());
+        demoDAO.save(list);
         LOGGER.info("存储数据库成功！");
+    }
+}
+
+```
+### <span id="simpleReadDAO" />持久层
+```java
+/**
+ * 假设这个是你的DAO存储。当然还要这个类让spring管理，当然你不用需要存储，也不需要这个类。
+ **/
+public class DemoDAO {
+
+    public void save(List<DemoData> list) {
+        // 如果是mybatis,尽量别直接调用多次insert,自己写一个mapper里面新增一个方法batchInsert,所有数据一次性插入
     }
 }
 ```
@@ -293,17 +340,15 @@ public class CustomStringStringConverter implements Converter<String> {
     public void synchronousRead() {
         String fileName = TestFileUtil.getPath() + "demo" + File.separator + "demo.xlsx";
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 同步读取会自动finish
-        List<Object> list = EasyExcel.read(fileName).head(DemoData.class).sheet().doReadSync();
-        for (Object obj : list) {
-            DemoData data = (DemoData)obj;
+        List<DemoData> list = EasyExcel.read(fileName).head(DemoData.class).sheet().doReadSync();
+        for (DemoData data : list) {
             LOGGER.info("读取到数据:{}", JSON.toJSONString(data));
         }
 
         // 这里 也可以不指定class，返回一个list，然后读取第一个sheet 同步读取会自动finish
-        list = EasyExcel.read(fileName).sheet().doReadSync();
-        for (Object obj : list) {
+        List<Map<Integer, String>> listMap = EasyExcel.read(fileName).sheet().doReadSync();
+        for (Map<Integer, String> data : listMap) {
             // 返回每条数据的键值对 表示所在的列 和所在列的值
-            Map<Integer, String> data = (Map<Integer, String>)obj;
             LOGGER.info("读取到数据:{}", JSON.toJSONString(data));
         }
     }
@@ -474,14 +519,17 @@ DEMO代码地址：[https://github.com/alibaba/easyexcel/blob/master/src/test/ja
 ```java
     /**
      * 文件上传
-     * <p>1. 创建excel对应的实体对象 参照{@link UploadData}
-     * <p>2. 由于默认异步读取excel，所以需要创建excel一行一行的回调监听器，参照{@link UploadDataListener}
-     * <p>3. 直接读即可
+     * <p>
+     * 1. 创建excel对应的实体对象 参照{@link UploadData}
+     * <p>
+     * 2. 由于默认异步读取excel，所以需要创建excel一行一行的回调监听器，参照{@link UploadDataListener}
+     * <p>
+     * 3. 直接读即可
      */
     @PostMapping("upload")
     @ResponseBody
     public String upload(MultipartFile file) throws IOException {
-        EasyExcel.read(file.getInputStream(), UploadData.class, new UploadDataListener()).sheet().doRead();
+        EasyExcel.read(file.getInputStream(), UploadData.class, new UploadDataListener(uploadDAO)).sheet().doRead();
         return "success";
     }
 ```
