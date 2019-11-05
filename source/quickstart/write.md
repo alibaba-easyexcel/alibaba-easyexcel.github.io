@@ -67,7 +67,7 @@ public class DemoData {
 参照：[对象](#simpleWriteObject)
 ### 代码
 ```java
-   /**
+    /**
      * 根据参数只导出指定列
      * <p>
      * 1. 创建excel对应的实体对象 参照{@link DemoData}
@@ -75,6 +75,8 @@ public class DemoData {
      * 2. 根据自己或者排除自己需要的列
      * <p>
      * 3. 直接写即可
+     *
+     * @since 2.1.1
      */
     @Test
     public void excludeOrIncludeWrite() {

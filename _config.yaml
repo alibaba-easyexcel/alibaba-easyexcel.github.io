@@ -5,7 +5,7 @@
 # Site
 title: 'Alibaba Easy Excel - 简单、省内存的Java解析Excel工具'
 description: '简单、省内存的Java解析Excel工具'
-keywords: 'Excel,Easy Excel,easyexcel,Java,xls,xlsx,省内存,简单,解析Excel'
+keywords: 'Excel,Easy Excel,easyexcel 官方,easyexcel,Java,xls,xlsx,省内存,简单,解析Excel,poi,oom,OutOfMemoryError'
 author: 'jipengfei'
 timezone: UTC
 
@@ -20,7 +20,7 @@ relative_link: false
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: ../node_modules/hexo-theme-doc
+theme: ../themes/hexo-theme-doc
 
 theme_config:
   favicon: images/favicon.ico
