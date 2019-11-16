@@ -1,5 +1,7 @@
 title: 读Excel
 ---
+## 示例代码
+DEMO代码地址：[https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/demo/read/ReadTest.java](https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/demo/read/ReadTest.java)
 ## <span id="simpleRead" />最简单的读
 ### <span id="simpleReadExcel" />excel示例
 ![img](/images/quickstart/read/demo.png)
@@ -508,7 +510,7 @@ public class NoModleDataListener extends AnalysisEventListener<Map<Integer, Stri
 
 ## <span id="webRead" />web中的读
 ### 示例代码
-DEMO代码地址：[https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java](/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java)
+DEMO代码地址：[https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java](https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java)
 ### excel示例
 参照：[excel示例](#simpleReadExcel)
 ### 对象
