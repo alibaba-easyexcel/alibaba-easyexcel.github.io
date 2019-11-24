@@ -166,7 +166,7 @@ public class ComplexHeadData {
     }
 ```
 
-## <span id="repeatedWrite" />重复多次写入
+## <span id="repeatedWrite" />重复多次写入(写到单个或者多个Sheet)
 ### excel示例
 ![img](/images/quickstart/write/repeatedWrite.png)
 ### 对象
@@ -174,7 +174,7 @@ public class ComplexHeadData {
 ### 代码
 ```java
   /**
-     * 重复多次写入
+     * 重复多次写入(写到单个或者多个Sheet)
      * <p>
      * 1. 创建excel对应的实体对象 参照{@link ComplexHeadData}
      * <p>
