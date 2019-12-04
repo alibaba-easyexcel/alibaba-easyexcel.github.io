@@ -31,7 +31,7 @@ title: API
 * `file` 与`inputStream`二选一。读取文件的文件。
 * `autoCloseStream` 自动关闭流。
 * `readCache` 默认小于5M用 内存，超过5M会使用 `EhCache`,这里不建议使用这个参数。
-* `useDefaultListener` `@since 2.1.4` 默认会加入`ModelBuildEventListener` 来帮忙转换成传入`class`的对象，设置成`false`后监听器会接收到`Map<Integer,CellData>`对象，如果还想继续接听到`class`对象，请调用`readListener`方法，加入自定义的`beforeListener`、 `ModelBuildEventListener`、 自定义的`afterListener`即可。
+* `useDefaultListener` `@since 2.1.4` 默认会加入`ModelBuildEventListener` 来帮忙转换成传入`class`的对象，设置成`false`后将不会协助转换对象，自定义的监听器会接收到`Map<Integer,CellData>`对象，如果还想继续接听到`class`对象，请调用`readListener`方法，加入自定义的`beforeListener`、 `ModelBuildEventListener`、 自定义的`afterListener`即可。
 #### ReadSheet（就是excel的一个Sheet）参数
 * `sheetNo` 需要读取Sheet的编码，建议使用这个来指定读取哪个Sheet
 * `sheetName` 根据名字去匹配Sheet,excel 2003不支持根据名字去匹配
