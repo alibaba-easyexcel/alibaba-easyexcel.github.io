@@ -58,7 +58,7 @@
 <li><code>file</code> 与<code>inputStream</code>二选一。读取文件的文件。</li>
 <li><code>autoCloseStream</code> 自动关闭流。</li>
 <li><code>readCache</code> 默认小于5M用 内存，超过5M会使用 <code>EhCache</code>,这里不建议使用这个参数。</li>
-<li><code>useDefaultListener</code> <code>@since 2.1.4</code> 默认会加入<code>ModelBuildEventListener</code> 来帮忙转换成传入<code>class</code>的对象，设置成<code>false</code>后监听器会接收到<code>Map&lt;Integer,CellData&gt;</code>对象，如果还想继续接听到<code>class</code>对象，请调用<code>readListener</code>方法，加入自定义的<code>beforeListener</code>、 <code>ModelBuildEventListener</code>、 自定义的<code>afterListener</code>即可。<h4 id="ReadSheet（就是excel的一个Sheet）参数"><a href="#ReadSheet（就是excel的一个Sheet）参数" class="headerlink" title="ReadSheet（就是excel的一个Sheet）参数"></a>ReadSheet（就是excel的一个Sheet）参数</h4></li>
+<li><code>useDefaultListener</code> <code>@since 2.1.4</code> 默认会加入<code>ModelBuildEventListener</code> 来帮忙转换成传入<code>class</code>的对象，设置成<code>false</code>后将不会协助转换对象，自定义的监听器会接收到<code>Map&lt;Integer,CellData&gt;</code>对象，如果还想继续接听到<code>class</code>对象，请调用<code>readListener</code>方法，加入自定义的<code>beforeListener</code>、 <code>ModelBuildEventListener</code>、 自定义的<code>afterListener</code>即可。<h4 id="ReadSheet（就是excel的一个Sheet）参数"><a href="#ReadSheet（就是excel的一个Sheet）参数" class="headerlink" title="ReadSheet（就是excel的一个Sheet）参数"></a>ReadSheet（就是excel的一个Sheet）参数</h4></li>
 <li><code>sheetNo</code> 需要读取Sheet的编码，建议使用这个来指定读取哪个Sheet</li>
 <li><code>sheetName</code> 根据名字去匹配Sheet,excel 2003不支持根据名字去匹配<h2 id="写"><a href="#写" class="headerlink" title="写"></a>写</h2><h3 id="注解-1"><a href="#注解-1" class="headerlink" title="注解"></a>注解</h3></li>
 <li><code>ExcelProperty</code> index 指定写到第几列，默认根据成员变量排序。<code>value</code>指定写入的名称，默认成员变量的名字，多个<code>value</code>可以参照快速开始中的复杂头</li>
