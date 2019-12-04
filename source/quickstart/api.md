@@ -25,13 +25,13 @@ title: API
 * `clazz` 与`head`二选一。读取文件的头对应的class，也可以使用注解。如果两个都不指定，则会读取全部数据。
 * `autoTrim` 字符串、表头等数据自动trim
 * `password` 读的时候是否需要使用密码
-* `useDefaultListener` `@since 2.1.4` 默认会加入`ModelBuildEventListener` 来帮忙转换成传入`class`的对象，设置成`false`后监听器会接收到`Map<Integer,CellData>`对象，如果还想继续接听到`class`对象，请调用`readListener`方法，加入自定义的`beforeListener`、 `ModelBuildEventListener`、 自定义的`afterListener`即可。
 #### ReadWorkbook（理解成excel对象）参数
 * `excelType` 当前excel的类型 默认会自动判断
 * `inputStream` 与`file`二选一。读取文件的流，如果接收到的是流就只用，不用流建议使用`file`参数。因为使用了`inputStream` easyexcel会帮忙创建临时文件，最终还是`file`
 * `file` 与`inputStream`二选一。读取文件的文件。
 * `autoCloseStream` 自动关闭流。
 * `readCache` 默认小于5M用 内存，超过5M会使用 `EhCache`,这里不建议使用这个参数。
+* `useDefaultListener` `@since 2.1.4` 默认会加入`ModelBuildEventListener` 来帮忙转换成传入`class`的对象，设置成`false`后监听器会接收到`Map<Integer,CellData>`对象，如果还想继续接听到`class`对象，请调用`readListener`方法，加入自定义的`beforeListener`、 `ModelBuildEventListener`、 自定义的`afterListener`即可。
 #### ReadSheet（就是excel的一个Sheet）参数
 * `sheetNo` 需要读取Sheet的编码，建议使用这个来指定读取哪个Sheet
 * `sheetName` 根据名字去匹配Sheet,excel 2003不支持根据名字去匹配
