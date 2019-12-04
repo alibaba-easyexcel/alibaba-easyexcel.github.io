@@ -734,7 +734,7 @@ public class CustomSheetWriteHandler implements SheetWriteHandler {
 
 ## <span id="webWrite" />web中的写
 ### 示例代码
-DEMO代码地址：[https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java](/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java)
+DEMO代码地址：[https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java](https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java)
 ### 对象
 参照：[对象](#simpleWriteObject) 就是名称变了下
 ### 代码
@@ -761,8 +761,6 @@ DEMO代码地址：[https://github.com/alibaba/easyexcel/blob/master/src/test/ja
 ```
 
 ## <span id="webWrite" />web中的写并且失败的时候返回json
-### 示例代码
-DEMO代码地址：[https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java](https://github.com/alibaba/easyexcel/blob/master/src/test/java/com/alibaba/easyexcel/test/demo/web/WebTest.java)
 ### 对象
 参照：[对象](#simpleWriteObject) 就是名称变了下
 ### 代码
