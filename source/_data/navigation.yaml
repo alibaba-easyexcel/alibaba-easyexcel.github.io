@@ -49,6 +49,11 @@
     "path": "support/about.html"
   },
   {
+    "text": "我要贡献代码",
+    "type": "link",
+    "path": "support/contribute.html"
+  },
+  {
     "text": "在github上面留言",
     "type": "link",
     "path": "https://github.com/alibaba/easyexcel/issues/new/choose"
