@@ -5,6 +5,10 @@ EasyExcel是一个基于Java的简单、省内存的读写Excel的开源项目�
 github地址:[https://github.com/alibaba/easyexcel](https://github.com/alibaba/easyexcel)
 开源项目不容易，如果觉得本项目对您的工作还是有帮助的话，请在帮忙在<a target="_blank" href='https://github.com/alibaba/easyexcel'><img src="https://img.shields.io/github/stars/alibaba/easyexcel.svg?style=flat-square&label=Stars&logo=github" alt="github star"/></a>点个★Star。
 
+# 本网站已经不更新，最新版本已经迁移到语雀
+[语雀官方网站: https://yuque.com/easyexcel](https://www.yuque.com/easyexcel/doc/easyexcel)
+[语雀常见问题](https://www.yuque.com/easyexcel/faq)
+
 ### 联系方式
 [QQ群: 662022184](//shang.qq.com/wpa/qunwpa?idkey=53d9d821b0833e3c14670f007488a61e300f00ff4f1b81fd950590d90dd80f80)
 [钉钉群: 21960511](https://qr.dingtalk.com/action/joingroup?code=v1,k1,cchz6k12ci9B08NNqhNRFGXocNVHrZtW0kaOtTKg/Rk=&_dt_no_comment=1&origin=11)
